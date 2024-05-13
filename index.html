@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance dos Alunos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: rgb(145, 34, 49);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #c58d8d;
+            font-size: 50px;
+        }
+
+        #app {
+            margin: 10px auto;
+            width: 1000px;
+            background-color: rgb(128, 21, 21);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(1, 1, 1, 1.5);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 25px;
+            color: rgb(250, 245, 245);
+            font-size: 25px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid rgb(56, 3, 3);
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: hsl(0, 48%, 80%);
+            color: rgb(121, 25, 25);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c28191;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f1d2d7;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Performance dos Alunos</h1>
+    <div id="app">
+        <label for="grades">Informe as notas dos alunos separadas por vírgula:</label>
+        <input type="text" id="grades">
+        <button onclick="calculatePerformance()">Calcular</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculatePerformance() {
+            var gradesInput = document.getElementById('grades').value;
+            var grades = gradesInput.split(',').map(Number);
+
+            var sum = grades.reduce(function(total, grade) {
+                return total + grade;
+            }, 0);
+
+            var average = sum / grades.length;
+
+            var performance = '';
+
+            if (average >= 9) {
+                performance = 'Excelente';
+            } else if (average >= 7.5) {
+                performance = 'Bom';
+            } else if (average >= 6) {
+                performance = 'Regular';
+            } else {
+                performance = 'Precisa Melhorar';
+            }
+
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = 'Índice de Performance: ' + performance;
+        }
+    </script>
+</body>
+</html>
